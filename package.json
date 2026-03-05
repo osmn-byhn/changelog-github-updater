@@ -1,0 +1,21 @@
+{
+  "name": "@osmn-byhn/changelog-github-updater",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@osmn-byhn/changelog-github-core": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.4",
+    "typescript": "^5.2.0"
+  }
+}
