@@ -14,6 +14,14 @@
   "dependencies": {
     "@osmn-byhn/changelog-github-core": "^1.0.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/osmn-byhn/changelog-github-updater.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "homepage": "https://changelog-github-updater.osmanbeyhan.com",
   "devDependencies": {
     "@types/node": "^25.3.4",
     "typescript": "^5.2.0"
