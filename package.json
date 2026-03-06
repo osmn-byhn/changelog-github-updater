@@ -1,6 +1,6 @@
 {
   "name": "@osmn-byhn/changelog-github-updater",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,7 +9,9 @@
   "license": "ISC",
   "scripts": {
     "build": "tsc",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "publish:npm": "npm publish --registry=https://registry.npmjs.org/ --access public",
+    "publish:github": "npm publish --registry=https://npm.pkg.github.com/ --access public"
   },
   "dependencies": {
     "@osmn-byhn/changelog-github-core": "^1.0.0"
@@ -24,6 +26,8 @@
   "homepage": "https://changelog-github-updater.osmanbeyhan.com",
   "devDependencies": {
     "@types/node": "^25.3.4",
-    "typescript": "^5.2.0"
+    "tsup": "^8.5.1",
+    "typescript": "^5.2.0",
+    "unbuild": "^3.6.1"
   }
 }
