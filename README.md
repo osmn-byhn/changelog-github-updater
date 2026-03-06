@@ -26,7 +26,10 @@ npm install @osmn-byhn/changelog-github-updater
 
 ## Usage Example
 
-The core functionality is provided through the `updateIfNeeded` method.
+The library supports both TypeScript and CommonJS environments seamlessly. The core functionality is provided through the `updateIfNeeded` method.
+
+### 1. TypeScript / ES Modules Usage
+If you are using TypeScript or a modern toolchain (like Vite):
 
 ```typescript
 import { updateIfNeeded } from "@osmn-byhn/changelog-github-updater";
@@ -48,6 +51,35 @@ async function checkUpdates() {
         }
     } catch (error) {
         console.error("An error occurred while checking for updates:", error);
+    }
+}
+
+checkUpdates();
+```
+
+### 2. Standard Native JavaScript (CommonJS/Node.js) Usage
+If you are developing a standard Node.js script or setting up `main.js` inside an older Electron boilerplate without Webpack/Vite:
+
+```javascript
+const { updateIfNeeded } = require("@osmn-byhn/changelog-github-updater");
+const { app } = require("electron");
+
+async function checkUpdates() {
+    try {
+        const result = await updateIfNeeded({
+            owner: "YourUsername",
+            repo: "YourRepo",
+            currentVersion: app.getVersion(), 
+            autoInstall: true
+        });
+
+        if (result.updated) {
+            console.log(`Update applied! Version: ${result.from} -> ${result.to}`);
+        } else {
+            console.log("Up to date.");
+        }
+    } catch (error) {
+        console.error("Update error:", error);
     }
 }
 

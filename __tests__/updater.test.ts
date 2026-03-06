@@ -1,5 +1,5 @@
 import { updateIfNeeded, downloadAsset, getOSAssetExtension, installUpdate } from '../src/updater';
-import { ChangelogCore } from '@osmn-byhn/changelog-github-core';
+import { GithubFetcher } from '@osmn-byhn/changelog-github-core';
 import { getCurrentVersion, setCurrentVersion } from '../src/versionManager';
 import os from 'os';
 import https from 'https';
@@ -72,8 +72,8 @@ describe('updater', () => {
         const mockReleases = jest.fn();
 
         beforeEach(() => {
-            (ChangelogCore as jest.Mock).mockImplementation(() => ({
-                releases: mockReleases,
+            (GithubFetcher as jest.Mock).mockImplementation(() => ({
+                fetchAndProcessReleases: mockReleases,
             }));
             (os.tmpdir as jest.Mock).mockReturnValue('/tmp');
         });

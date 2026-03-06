@@ -1,5 +1,5 @@
 // src/updater.ts
-import { ChangelogCore } from "@osmn-byhn/changelog-github-core";
+import { GithubFetcher } from "@osmn-byhn/changelog-github-core";
 import { getCurrentVersion, setCurrentVersion } from "./versionManager";
 import { MiddlewareFn, UpdaterOptions } from "./types";
 import os from "os";
@@ -73,9 +73,9 @@ export const updateIfNeeded = async (
     middleware?: MiddlewareFn
 ): Promise<{ updated: boolean; from?: string | null; to?: string }> => {
     const { owner, repo, currentVersion: passedVersion, tempPath, autoInstall } = options;
-    const changelog = new ChangelogCore({ owner, repo });
+    const fetcher = new GithubFetcher(owner, repo);
 
-    const releases = await changelog.releases();
+    const releases = await fetcher.fetchAndProcessReleases();
     if (!releases || releases.length === 0) return { updated: false };
 
     const latestRelease = releases[0];
